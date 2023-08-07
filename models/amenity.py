@@ -1,7 +1,10 @@
 #!/usr/bin/python3
 """ State Module for HBNB project """
 from models.base_model import BaseModel
+from models.base_model import Base
 
 
-class Amenity(BaseModel):
+class Amenity(BaseModel, Base):
+    """defines class amenity"""
+    __tablename__ = 'amenities'
     name = ""
