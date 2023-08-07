@@ -17,6 +17,10 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """Instantiates a new model"""
+        self.id = str(uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = self.created_at
+
         if kwargs:
             for k, v in kwargs.items():
                 if k in ['created_at', 'updated_at']:
@@ -24,10 +28,6 @@ class BaseModel:
                             datetime.strptime(v, '%Y-%m-%dT%H:%M:%S.%f'))
                 elif k != '__class__':
                     setattr(self, k, v)
-        else:
-            self.id = str(uuid4())
-            self.created_at = datetime.now()
-            self.updated_at = self.created_at
 
     def __str__(self):
         """Returns a string representation of the instance"""
